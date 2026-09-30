@@ -4,7 +4,7 @@
 **Branch:** `feature/data` *(đổi theo nhánh của bạn)*
 **Vai trò:** Data Engineer / Data Analyst
 
-> Số liệu được tính trực tiếp từ `StudentPerformanceFactors.csv` (raw) và `dataset_with_risk.csv` (đã làm sạch).
+
 
 ---
 
