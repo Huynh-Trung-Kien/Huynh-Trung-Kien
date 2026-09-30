@@ -1,7 +1,7 @@
 # Data Documentation — Dự đoán và cảnh báo sớm nguy cơ học tập kém của sinh viên
 
 **Project:** Ứng dụng Khoa học dữ liệu đa yếu tố trong phân tích, dự đoán và cảnh báo sớm nguy cơ học tập kém của sinh viên
-**Vai trò:** Data Engineer / Data Analyst
+
 
 
 
