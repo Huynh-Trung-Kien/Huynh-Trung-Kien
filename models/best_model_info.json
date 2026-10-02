@@ -1,0 +1,49 @@
+{
+  "best_model": "Logistic Regression",
+  "pipeline": "StandardScaler + LogisticRegression",
+  "best_params": {
+    "model__C": 10
+  },
+  "selection_rule": "CV F1-macro cao nhất trên tập train (5-fold, phân tầng); tập test chỉ dùng để báo cáo",
+  "cv_f1_macro": 0.9674,
+  "test_metrics": {
+    "accuracy": 0.9614,
+    "f1_macro": 0.9608,
+    "recall_high": 0.9381
+  },
+  "n_train": 5284,
+  "n_test": 1322,
+  "test_size": 0.2,
+  "random_state": 42,
+  "stratify": true,
+  "n_features": 21,
+  "features": [
+    "Hours_Studied",
+    "Attendance",
+    "Parental_Involvement",
+    "Access_to_Resources",
+    "Extracurricular_Activities",
+    "Sleep_Hours",
+    "Previous_Scores",
+    "Motivation_Level",
+    "Internet_Access",
+    "Tutoring_Sessions",
+    "Family_Income",
+    "Teacher_Quality",
+    "School_Type",
+    "Physical_Activity",
+    "Learning_Disabilities",
+    "Distance_from_Home",
+    "Gender",
+    "Peer_Influence_Neutral",
+    "Peer_Influence_Positive",
+    "Parental_Education_Level_High School",
+    "Parental_Education_Level_Postgraduate"
+  ],
+  "excluded_columns": [
+    "Exam_Score",
+    "Risk_Level"
+  ],
+  "sklearn_version": "1.8.0",
+  "trained_at": "2026-10-02 10:33"
+}
