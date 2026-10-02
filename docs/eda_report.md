@@ -19,8 +19,7 @@ Dữ liệu phân tích được tiếp nhận từ bước làm sạch (`datase
 5. **Các biến gốc gần như độc lập với nhau** (|r| lớn nhất chỉ 0.027); các cặp tương quan cao đều do biến phái sinh hoặc biến dummy.
 6. **Mất cân bằng lớp ở mức nhẹ:** tỷ lệ lớp lớn nhất/nhỏ nhất chỉ khoảng 2:1 (Medium 44.0% so với High 22.0%), chưa cần SMOTE.
 
-![Tổng quan EDA (Executive Dashboard)](figures/13_executive_dashboard.png)
-*Hình: Tổng quan EDA (Executive Dashboard)*
+
 
 ---
 
@@ -53,14 +52,7 @@ Dữ liệu phân tích được tiếp nhận từ bước làm sạch (`datase
 
   Phần lớn sinh viên ở mức **Medium**. `Distance_from_Home`: Near 59.8%, Moderate 30.2%, Far 10.0%. Các biến nhị phân: có `Internet_Access` 92.5%, có `Extracurricular_Activities` 59.6%, `School_Type` Private 30.4%, `Learning_Disabilities` 10.5%, nữ 42.3%.
 
-![Phân phối các biến số](figures/02_numeric_distributions.png)
-*Hình: Phân phối các biến số*
 
-![Phân bố biến mục tiêu Risk_Level](figures/09_class_distribution.png)
-*Hình: Phân bố biến mục tiêu Risk_Level*
-
-![Phân phối các biến phân loại](figures/02_categorical_counts.png)
-*Hình: Phân phối các biến phân loại*
 
 ### 2.2 Tương quan & Đa cộng tuyến (Correlation & Multicollinearity)
 - Sử dụng **Ma trận tương quan (Heatmap)** cho các biến số. Tương quan với `Exam_Score`, sắp theo độ lớn:
@@ -76,19 +68,14 @@ Dữ liệu phân tích được tiếp nhận từ bước làm sạch (`datase
 | 7 | `Tutoring_Sessions` | 0.154 |
 | … | `Sleep_Hours`, `School_Type`, `Gender` | -0.016, 0.010, 0.000 |
 
-![Ma trận tương quan giữa các biến số](figures/03_correlation_heatmap.png)
-*Hình: Ma trận tương quan giữa các biến số*
 
-![Tương quan của các feature với Exam_Score](figures/03_correlation_with_target.png)
-*Hình: Tương quan của các feature với Exam_Score*
 
 - **Đa cộng tuyến:** Giữa các biến gốc gần như không có (|r| lớn nhất = 0.027). Các cặp tương quan cao đều do biến phái sinh hoặc biến dummy: `Study_Sleep_Ratio` với `Hours_Studied` (r = 0.77) và `Sleep_Hours` (r = -0.58), `Cluster` với `Sleep_Hours` (r = 0.69), và cặp `Peer_Influence_*` (r = -0.66).
 - **Quyết định xử lý:** Khi dùng mô hình tuyến tính (Logistic Regression), cân nhắc chọn giữa `Study_Sleep_Ratio` hoặc cặp `Hours_Studied` + `Sleep_Hours`, không dùng cả ba. Mô hình cây (Random Forest, XGBoost) ít bị ảnh hưởng.
 
 ### 2.3 Phân tích Feature ↔ Target
 
-![So sánh các biến số theo nhóm nguy cơ](figures/04_feature_vs_target_boxplot.png)
-*Hình: So sánh các biến số theo nhóm nguy cơ*
+
 **Trung bình các biến số theo nhóm nguy cơ:**
 
 | Biến | High | Medium | Low |
@@ -134,11 +121,7 @@ Dữ liệu phân tích được tiếp nhận từ bước làm sạch (`datase
 
 Sinh viên có `Learning_Disabilities` có tỷ lệ nguy cơ cao 33.5%, so với 20.6% ở nhóm không có.
 
-![Điểm thi theo các yếu tố phân loại](figures/05_score_by_category.png)
-*Hình: Điểm thi theo các yếu tố phân loại*
 
-![Pair Plot (mẫu 1,500 sinh viên)](figures/07_pairplot.png)
-*Hình: Pair Plot (mẫu 1,500 sinh viên)*
 
 ### 2.4 Phân tích Phân phối Lệch & Ngoại lệ
 - **Phát hiện:** Boxplot và quy tắc IQR (1.5 × IQR) chỉ tìm thấy ngoại lai ở 3 biến:
@@ -153,11 +136,6 @@ Sinh viên có `Learning_Disabilities` có tỷ lệ nguy cơ cao 33.5%, so vớ
 - **Quyết định:** Đây đều là **giá trị hợp lệ (Genuine Extreme Values)**: điểm thi cao/thấp thật, số buổi học thêm nhiều. Giữ nguyên 100% (xem `data_quality_report.md`).
 - **Biến đổi Logarit:** `np.log1p` giảm độ lệch của `Exam_Score` từ 1.58 xuống 0.94 và của `Tutoring_Sessions` từ 0.81 xuống -0.21. Việc biến đổi không bắt buộc: `Exam_Score` không đưa vào features, còn các mô hình dựa trên cây không cần.
 
-![Phát hiện ngoại lai bằng Boxplot](figures/08_outlier_boxplots.png)
-*Hình: Phát hiện ngoại lai bằng Boxplot*
-
-![Phân phối trước và sau biến đổi log1p](figures/08_log_transform.png)
-*Hình: Phân phối trước và sau biến đổi log1p*
 
 ---
 
@@ -179,19 +157,14 @@ Sinh viên có `Learning_Disabilities` có tỷ lệ nguy cơ cao 33.5%, so vớ
 
 Đây là kết quả rõ nhất của toàn bộ EDA: chuyên cần dưới 70% khiến hơn một nửa sinh viên rơi vào nhóm nguy cơ cao.
 
-![Risk_Level theo nhóm chuyên cần](figures/06_risk_by_attendance_category.png)
-*Hình: Risk_Level theo nhóm chuyên cần*
 
-![Phân phối Study_Sleep_Ratio và theo Risk_Level](figures/11_study_sleep_ratio.png)
-*Hình: Phân phối Study_Sleep_Ratio và theo Risk_Level*
 
 ### 3.2 Phân cụm K-Means (k = 3)
 - **Feature dùng để phân cụm:** `Hours_Studied`, `Attendance`, `Sleep_Hours`, `Physical_Activity` (đã chuẩn hóa bằng `StandardScaler`, `random_state=42`).
 - **Chọn k:** Đồ thị Elbow (k = 1 đến 7) giảm đều, **không có "khuỷu" rõ rệt**; chọn k = 3 để cho ra số nhóm dễ diễn giải.
 - **Chất lượng cụm:** Silhouette = 0.174, tức các cụm **tách nhau yếu**, có phần chồng lấn. Nên xem đây là phân nhóm để mô tả, không phải cấu trúc tự nhiên rõ ràng của dữ liệu.
 
-![Elbow và Silhouette của K-Means](figures/10_kmeans_elbow_silhouette.png)
-*Hình: Elbow và Silhouette của K-Means*
+
 
 | Cụm | Số SV | Chuyên cần | Giờ ngủ | Giờ học | Điểm thi TB | High | Medium | Low |
 |---|---|---|---|---|---|---|---|---|
@@ -205,11 +178,7 @@ Sinh viên có `Learning_Disabilities` có tỷ lệ nguy cơ cao 33.5%, so vớ
 - **Cụm 2 "Chuyên cần trung bình, ngủ nhiều"**: nguy cơ trung gian (28.0% High).
 - Giờ học (~19–21) và `Previous_Scores` (~75) gần như giống nhau ở cả 3 cụm, nên **chuyên cần** là yếu tố phân biệt chính.
 
-![Giá trị trung bình của từng cụm](figures/10_cluster_profile.png)
-*Hình: Giá trị trung bình của từng cụm*
 
-![Cơ cấu nguy cơ theo cụm](figures/06_risk_by_cluster.png)
-*Hình: Cơ cấu nguy cơ theo cụm*
 
 ---
 
@@ -223,8 +192,6 @@ Sinh viên có `Learning_Disabilities` có tỷ lệ nguy cơ cao 33.5%, so vớ
 | **4. Target Correlation** | Mạnh: `Attendance`, `Hours_Studied`; yếu: `Sleep_Hours`, `Physical_Activity`, `Gender`, `School_Type` (|r| < 0.03) | Cân nhắc loại các biến |r| < 0.03 khi Feature Selection. |
 | **5. Multicollinearity** | Biến gốc độc lập (|r| ≤ 0.027); cặp cao đều do biến phái sinh: `Study_Sleep_Ratio` ↔ `Hours_Studied` (0.77), `Cluster` ↔ `Sleep_Hours` (0.69) | Không đưa `Study_Sleep_Ratio` cùng `Hours_Studied` + `Sleep_Hours` vào mô hình tuyến tính. |
 
-![Tổng hợp đánh giá chất lượng đặc trưng (4 panel)](figures/12_feature_evaluation_4panel.png)
-*Hình: Tổng hợp đánh giá chất lượng đặc trưng (4 panel)*
 
 ---
 
