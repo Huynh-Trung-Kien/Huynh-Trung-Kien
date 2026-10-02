@@ -1,0 +1,43 @@
+{
+  "scoring": "f1_macro",
+  "cv_folds": 5,
+  "random_state": 42,
+  "results": {
+    "Logistic Regression": {
+      "param_grid": {
+        "model__C": [
+          0.01,
+          0.1,
+          1,
+          10,
+          100
+        ]
+      },
+      "best_params": {
+        "model__C": 10
+      },
+      "baseline_cv_f1_macro": 0.9663,
+      "tuned_cv_f1_macro": 0.9674,
+      "n_candidates": 5
+    },
+    "Gradient Boosting": {
+      "param_grid": {
+        "model__n_estimators": [
+          100,
+          200
+        ],
+        "model__max_depth": [
+          2,
+          3
+        ]
+      },
+      "best_params": {
+        "model__max_depth": 3,
+        "model__n_estimators": 200
+      },
+      "baseline_cv_f1_macro": 0.8406,
+      "tuned_cv_f1_macro": 0.878,
+      "n_candidates": 4
+    }
+  }
+}
