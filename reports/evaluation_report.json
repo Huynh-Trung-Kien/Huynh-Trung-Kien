@@ -1,0 +1,67 @@
+{
+  "model": "StandardScaler + LogisticRegression",
+  "n_test": 1322,
+  "refit_on_train": false,
+  "test_size": 0.2,
+  "random_state": 42,
+  "features": [
+    "Hours_Studied",
+    "Attendance",
+    "Parental_Involvement",
+    "Access_to_Resources",
+    "Extracurricular_Activities",
+    "Sleep_Hours",
+    "Previous_Scores",
+    "Motivation_Level",
+    "Internet_Access",
+    "Tutoring_Sessions",
+    "Family_Income",
+    "Teacher_Quality",
+    "School_Type",
+    "Physical_Activity",
+    "Learning_Disabilities",
+    "Distance_from_Home",
+    "Gender",
+    "Peer_Influence_Neutral",
+    "Peer_Influence_Positive",
+    "Parental_Education_Level_High School",
+    "Parental_Education_Level_Postgraduate"
+  ],
+  "accuracy": 0.9629349470499243,
+  "f1_macro": 0.9622778126463234,
+  "recall_high": 0.9347079037800687,
+  "per_class": {
+    "Low": {
+      "precision": 0.9733333333333334,
+      "recall": 0.9733333333333334,
+      "f1-score": 0.9733333333333334,
+      "support": 450.0
+    },
+    "Medium": {
+      "precision": 0.9494097807757167,
+      "recall": 0.9690189328743546,
+      "f1-score": 0.959114139693356,
+      "support": 581.0
+    },
+    "High": {
+      "precision": 0.974910394265233,
+      "recall": 0.9347079037800687,
+      "f1-score": 0.9543859649122807,
+      "support": 291.0
+    }
+  },
+  "macro_avg": {
+    "precision": 0.9658845027914277,
+    "recall": 0.9590200566625855,
+    "f1-score": 0.9622778126463234,
+    "support": 1322.0
+  },
+  "weighted_avg": {
+    "precision": 0.9631664200921892,
+    "recall": 0.9629349470499243,
+    "f1-score": 0.9629134878602976,
+    "support": 1322.0
+  },
+  "high_predicted_as_low": 0,
+  "high_predicted_as_medium": 19
+}
